@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+        <div class="row margin-top-60">
+            <div class="col-md-12 margin-bottom-60">
+                <h2>To Do Planning</h2>
+                {% for developer in developers %}
+                <table class="table table-bordered">
+                    <thead>
+                    <tr class="table-primary">
+                        <th>TASK NAME</th>
+                        <th>TASK LEVEL</th>
+                        <th>DUE DATE (hour)</th>
+                        <th>ASSIGNED TO</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for task in tasks %}
+                        {% if task.developer.id == developer.id %}
+                    <tr>
+                        <td>{{ task.toDoList.name }}</td>
+                        <td>{{ task.toDoList.level }}</td>
+                        <td>{{ task.estimatedDuration }}</td>
+                        <td>{{ task.developer.name }}</td>
+                    </tr>
+                        {% endif %}
+
+                    {% endfor %}
+
+                    <tr class="table-info">
+                        <th scope="row">Total Estimated Duration (hour):</th>
+                        <td colspan="3"> {{ developer.totalHours }}</td>
+                    </tr>
+
+                    <tr class="table-info">
+                        <th scope="row">Total Estimated Duration (weekly):</th>
+                        <td colspan="3"> {{ developer.totalWeek }} </td>
+                    </tr>
+                    </tbody>
+                </table>
+                {% endfor %}
+
+    </div>
+    </div>
+
+
+{% endblock %}
+{% block pageLevelJavascript %}
+
+
+
+
+
+{% endblock %}
